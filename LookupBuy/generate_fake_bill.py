@@ -29,7 +29,7 @@ def generate_products():
     return np.random.choice(a=products, size=N)
 
 def generate_places():
-    return np.random.choice(a=places, size=N)
+    return np.full(N, np.random.choice(a=places, size=1))
 
 def generate_date():
     return np.random.choice(pd.date_range('20000101', periods=5000))
