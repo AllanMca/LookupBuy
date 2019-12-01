@@ -14,13 +14,15 @@ def best_price_by_list(data, lista):
     def review(item):
         return pd.Series({'Suma': item.sum(), 'p_value': item[item.notna()].size / item.size , 'missing': item[item.isna()].index.to_list()})
 
+    def cheapest(item):
+        return item[item['Suma'] == item['Suma'].min()].iloc[-1]
+
     res = (
         selection.apply(review, axis=0)
         .T.reset_index()
-        .groupby(['p_value', 'Lugar'])['Suma'].min().sort_index(ascending=False)
-
+        .groupby(['p_value']).apply(cheapest)
     )
-    return
+    return res
 
 if __name__ == '__main__':
     data = load_csv2df()
