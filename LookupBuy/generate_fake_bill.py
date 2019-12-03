@@ -18,7 +18,9 @@ products = [
 places = ['pali santa ana',
           'automercado heredia',
           'masxmenos belen',
-          'perimercados escazu']
+          'perimercados escazu',
+          'pali heredia',
+          'super la confianza']
 
 N = np.random.randint(5,10)
 
