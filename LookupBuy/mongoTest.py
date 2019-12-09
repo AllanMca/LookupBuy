@@ -24,9 +24,9 @@ def getData():#Funcion para obtener los datos de la bd
         tempDoc.apply(addPlace)
         return np.nan if (len(tempDoc)<=0) else pd.DataFrame(tempDoc.tolist())
     toFind={"Producto": {"$in": [ "arroz","cereal","frijoles","jugo"] }}#datos a buscar
-    asd=pd.Series(db.list_collection_names()).apply(makeDataFrame)#se crea una serie con el nombre de cada una de las colecciones que posee la base de datos y se les aplica la funcion makeDataFrame
-    asd.dropna(inplace=True)
-    return (pd.concat(asd.tolist()).drop('_id',axis=1))
+    selection=pd.Series(db.list_collection_names()).apply(makeDataFrame)#se crea una serie con el nombre de cada una de las colecciones que posee la base de datos y se les aplica la funcion makeDataFrame
+    selection.dropna(inplace=True)
+    return (pd.concat(selection.tolist()).drop('_id',axis=1))
 
 def best_price(data):
     selection = (
